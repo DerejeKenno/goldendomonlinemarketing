@@ -1,23 +1,26 @@
 package miu.cs545.goldendomonlinemarketing.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import miu.cs545.goldendomonlinemarketing.UserAccount.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sql.DataSource;
 
-
+@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+/*
     @Autowired
     DataSource dataSource;
     
@@ -27,30 +30,59 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 ////                .dataSource(dataSource)
 ////                .withDefaultSchema()
 ////                .withUser(
-////                        User.withUsername("user")
+////                        Person.withUsername("user")
 ////                        .password("user")
 ////                        .roles("USER")
 ////                )
 ////                .withUser(
-////                        User.withUsername("admin")
+////                        Person.withUsername("admin")
 ////                        .password("admin")
 ////                        .roles("ADMIN")
 ////                );
 
-        /**
+        *//**
          * When the schema is the default, match Spring Security doc
-         */
+         *//*
 //        auth.jdbcAuthentication()
 //                .dataSource(dataSource);
 
-        /**
+        *//**
          * If your schema isn't default, override query
-         */
+         *//*
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, enabled from users where username = ?")
                 .authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
+
+
+    }*/
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
     }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return authenticationProvider;
+    }
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+
+    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

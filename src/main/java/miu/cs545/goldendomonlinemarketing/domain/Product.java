@@ -76,4 +76,16 @@ public class Product {
     public void setReviewers(List<Customer> reviewers) {
         this.reviewers = reviewers;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", category='" + category + '\'' +
+                ", reviewers=" + reviewers +
+                '}';
+    }
 }

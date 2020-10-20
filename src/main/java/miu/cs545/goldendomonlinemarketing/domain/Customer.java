@@ -1,5 +1,7 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
+import miu.cs545.goldendomonlinemarketing.UserAccount.User;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -9,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Customer extends User{
+public class Customer extends Person {
     private Date dateRegistered;
 
     @OneToOne
@@ -24,15 +26,18 @@ public class Customer extends User{
     private List<Orders> orders=new ArrayList<>();
 
 
-
-
-    public Customer(int userId, String firstName, String lastName, String userName, String password, boolean status, String role, Address address, Date dateRegistered) {
-        super(userId, firstName, lastName, userName, password, status, role, address);
-        this.dateRegistered = dateRegistered;
-    }
-
     public Customer() {
         super();
+    }
+
+    public Customer(int personId, String firstName, String lastName, List<Address> addresses, User userAccount, Date dateRegistered, BillingAddress billingAddresses, List<Product> productReviews, List<ShoppingCart> carts, List<Seller> follows, List<Orders> orders) {
+        super(personId, firstName, lastName, addresses, userAccount);
+        this.dateRegistered = dateRegistered;
+        this.billingAddresses = billingAddresses;
+        this.productReviews = productReviews;
+        this.carts = carts;
+        this.follows = follows;
+        this.orders = orders;
     }
 
     public Date getDateRegistered() {
