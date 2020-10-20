@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>CustomerDetails</title>
+    <title>Registered Successfully </title>
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css"/>
 </head>
+
 <body>
-CustomerDetails
+<span id="global" th:style="'width:500px'">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <p>First Name:</p>
+    <p>Last Name:</span></p>
+    <p>User Name: </span></p>
+
+</div>
 </body>
 </html>

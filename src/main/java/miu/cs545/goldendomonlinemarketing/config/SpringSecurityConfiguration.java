@@ -1,6 +1,6 @@
 package miu.cs545.goldendomonlinemarketing.config;
 
-import miu.cs545.goldendomonlinemarketing.UserAccount.UserDetailsServiceImpl;
+import miu.cs545.goldendomonlinemarketing.UserAccounts.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -87,6 +87,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/customer/*").hasRole("BUYER")
                 .antMatchers("/user").hasRole("USER")
                 .antMatchers("/", "/h2-console/**").permitAll()
                 .and()

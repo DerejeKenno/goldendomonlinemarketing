@@ -1,4 +1,4 @@
-package miu.cs545.goldendomonlinemarketing.UserAccount;
+package miu.cs545.goldendomonlinemarketing.UserAccounts;
 
 import javax.persistence.*;
 

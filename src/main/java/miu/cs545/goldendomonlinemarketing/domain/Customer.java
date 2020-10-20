@@ -1,6 +1,6 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
-import miu.cs545.goldendomonlinemarketing.UserAccount.User;
+import miu.cs545.goldendomonlinemarketing.UserAccounts.UserAccount;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -18,7 +18,7 @@ public class Customer extends Person {
     private BillingAddress billingAddresses;
    @ManyToMany
      private List<Product>productReviews=new ArrayList<>();
-    @OneToMany(mappedBy = "customer")
+    @OneToMany//(mappedBy = "customer")
     private List<ShoppingCart>carts=new ArrayList<>();
     @ManyToMany
     private List<Seller>follows=new ArrayList<>();
@@ -30,8 +30,8 @@ public class Customer extends Person {
         super();
     }
 
-    public Customer(int personId, String firstName, String lastName, List<Address> addresses, User userAccount, Date dateRegistered, BillingAddress billingAddresses, List<Product> productReviews, List<ShoppingCart> carts, List<Seller> follows, List<Orders> orders) {
-        super(personId, firstName, lastName, addresses, userAccount);
+    public Customer(int personId, String firstName, String lastName, Address address, UserAccount userAccount, Date dateRegistered, BillingAddress billingAddresses, List<Product> productReviews, List<ShoppingCart> carts, List<Seller> follows, List<Orders> orders) {
+        super(personId, firstName, lastName, address, userAccount);
         this.dateRegistered = dateRegistered;
         this.billingAddresses = billingAddresses;
         this.productReviews = productReviews;
@@ -40,11 +40,15 @@ public class Customer extends Person {
         this.orders = orders;
     }
 
+
     public Date getDateRegistered() {
         return dateRegistered;
     }
 
     public void setDateRegistered(Date dateRegistered) {
         this.dateRegistered = dateRegistered;
+
+        //Customer c=new Customer();
+
     }
 }

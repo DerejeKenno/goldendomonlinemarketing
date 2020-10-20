@@ -1,6 +1,6 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
-import miu.cs545.goldendomonlinemarketing.UserAccount.User;
+import miu.cs545.goldendomonlinemarketing.UserAccounts.UserAccount;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ public class Person {
     private int personId;
     private String firstName;
     private String lastName;
-    @OneToMany
-    private List<Address> addresses = new ArrayList<>();
+    @OneToOne
+    private Address address;// = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "user_account_id")
-    User userAccount;
+    UserAccount userAccount;
 
     /*private String username;
     private String password;
@@ -28,13 +28,14 @@ public class Person {
     public Person() {
     }
 
-    public Person(int personId, String firstName, String lastName, List<Address> addresses, User userAccount) {
+    public Person(int personId, String firstName, String lastName, Address address, UserAccount userAccount) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addresses = addresses;
+        this.address = address;
         this.userAccount = userAccount;
     }
+
 
     public int getPersonId() {
         return personId;
@@ -60,19 +61,19 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public User getUserAccount() {
+    public UserAccount getUserAccount() {
         return userAccount;
     }
 
-    public void setUserAccount(User userAccount) {
+    public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
     }
 
@@ -82,7 +83,7 @@ public class Person {
                 "personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addresses=" + addresses +
+                ", addresses=" + address +
                 ", userAccount=" + userAccount +
                 '}';
     }

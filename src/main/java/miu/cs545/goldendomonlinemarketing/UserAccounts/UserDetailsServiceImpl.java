@@ -1,6 +1,5 @@
-package miu.cs545.goldendomonlinemarketing.UserAccount;
+package miu.cs545.goldendomonlinemarketing.UserAccounts;
 
-import miu.cs545.goldendomonlinemarketing.repositoy.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +11,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.getUserByUsername(username);
-        if (user == null)
-            throw new UsernameNotFoundException("Could not find user");
-        return new MyUserDetails(user);
-    }
+        UserAccount userAccount = userRepository.getUserByUsername(username);
+        if (userAccount == null)
+            throw new UsernameNotFoundException("Could not find userAccount");
+        return new MyUserDetails(userAccount);
+           }
+
+   /* public UserAccount saveUserAccount(UserAccount user){
+        return  userRepository.save(user);
+    }*/
+
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Product List</h1>
+    </div>
+    <div class="container">
+        <br>
+        <a href="/admin/home">Home</a>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+<div class="col-lg-6 col-sm-6 col-md-6">
+    <form method="get" action="/admin/entry">
+        <button class="btn btn-primary fas fa-userAccount-plus ml-2" type="submit">Add Another Product</button>
+        <a href="/admin/home" class="btn btn-primary"><span
+                class="fas fa-userAccount-plus ml-2"> Home</span></a>
+    </form>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">ProuctId</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Unit price</th>
+            <th scope="col">Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product:${productList}">
+            <th scope="row"><span th:text="${product.productId}"></span></th>
+            <td><span th:text="${product.getProductName()}"></span></td>
+            <td><span th:text="${product.getDescription()}"></span></td>
+            <td><span th:text="${product.getUnitPrice()}"></span></td>
+            <td><span th:text="${product.getCategory()}"></span></td>
+
+            <td><a th:href="@{/admin/editproduct/{id} (id=${product.getProductId()})}" class="btn btn-primary"><i
+                    class="fas fa-userAccount-edit ml-2"></i> </a></td>
+            <td><a th:href="@{/admin/deleteproduct/{id} (id=${product.getProductId()})}" class="btn btn-primary"><i
+                    class="fas fa-userAccount-times ml-2"></i> </a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+</body>
+</html>

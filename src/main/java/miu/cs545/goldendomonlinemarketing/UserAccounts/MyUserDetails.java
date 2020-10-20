@@ -1,4 +1,4 @@
-package miu.cs545.goldendomonlinemarketing.UserAccount;
+package miu.cs545.goldendomonlinemarketing.UserAccounts;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,26 +8,26 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
-    private User user;
+    private UserAccount userAccount;
 
-    public MyUserDetails(User user) {
-        this.user = user;
+    public MyUserDetails(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userAccount.getUserRole().getRole());
         return Arrays.asList(authority);
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userAccount.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return userAccount.getUsername();
     }
 
     @Override

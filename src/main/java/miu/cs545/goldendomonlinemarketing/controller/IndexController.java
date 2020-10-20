@@ -1,4 +1,4 @@
-package miu.cs545.goldendomonlinemarketing.controller;
+/*package miu.cs545.goldendomonlinemarketing.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,4 +20,4 @@ public class IndexController {
         return "adminhome";
     }
 
-}
+}*/

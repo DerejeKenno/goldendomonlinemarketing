@@ -1,6 +1,6 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
-import miu.cs545.goldendomonlinemarketing.UserAccount.User;
+import miu.cs545.goldendomonlinemarketing.UserAccounts.UserAccount;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -27,8 +27,8 @@ public class Seller extends Person {
         this.followers = followers;
     }
 
-    public Seller(int personId, String firstName, String lastName, List<Address> addresses, User userAccount, Date hireDate, List<Product> productPosts, List<Customer> followers) {
-        super(personId, firstName, lastName, addresses, userAccount);
+    public Seller(int personId, String firstName, String lastName, Address address, UserAccount userAccount, Date hireDate, List<Product> productPosts, List<Customer> followers) {
+        super(personId, firstName, lastName, address, userAccount);
         this.hireDate = hireDate;
         this.productPosts = productPosts;
         this.followers = followers;
