@@ -13,6 +13,20 @@ import java.util.List;
 @Controller
 //@RequestMapping("/home")
 public class ProductController {
+    @Autowired
+    ProductService productService;
 
+    @RequestMapping("/productlist")
+    public String products(Model model) {
+
+        List<Product> productList = productService.getAllProducts();
+
+        for (Product p : productList) {
+            System.out.println(p);
+        }
+
+        model.addAttribute("productList", productList);
+        return "productlist.html";
+    }
 }
 //AllProductsView

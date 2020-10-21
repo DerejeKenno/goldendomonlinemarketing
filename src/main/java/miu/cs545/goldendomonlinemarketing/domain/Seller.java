@@ -27,8 +27,8 @@ public class Seller extends Person {
         this.followers = followers;
     }
 
-    public Seller(int personId, String firstName, String lastName, Address address, UserAccount userAccount, Date hireDate, List<Product> productPosts, List<Customer> followers) {
-        super(personId, firstName, lastName, address, userAccount);
+    public Seller(int personId, String firstName, String lastName,  UserAccount userAccount, Date hireDate, List<Product> productPosts, List<Customer> followers) {
+        super(personId, firstName, lastName, userAccount);
         this.hireDate = hireDate;
         this.productPosts = productPosts;
         this.followers = followers;

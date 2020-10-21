@@ -13,8 +13,8 @@ public class Person {
     private int personId;
     private String firstName;
     private String lastName;
-    @OneToOne
-    private Address address;// = new ArrayList<>();
+    /*  @OneToOne(cascade = CascadeType.ALL)
+      private Address address;// = new ArrayList<>();*/
     @OneToOne
     @JoinColumn(name = "user_account_id")
     UserAccount userAccount;
@@ -28,11 +28,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(int personId, String firstName, String lastName, Address address, UserAccount userAccount) {
+    public Person(int personId, String firstName, String lastName, UserAccount userAccount) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        //this.address = address;
         this.userAccount = userAccount;
     }
 
@@ -61,13 +61,6 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public UserAccount getUserAccount() {
         return userAccount;
@@ -83,7 +76,6 @@ public class Person {
                 "personId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addresses=" + address +
                 ", userAccount=" + userAccount +
                 '}';
     }

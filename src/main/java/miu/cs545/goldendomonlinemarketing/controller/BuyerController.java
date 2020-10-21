@@ -27,7 +27,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/buyer")
 @SessionAttributes("savedUser")
 public class BuyerController {
 
@@ -51,7 +51,7 @@ public class BuyerController {
         roles.put("ROLE_ADMIN", "Admin");
     }*/
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerbuyer", method = RequestMethod.GET)
     public String signUpForm(@ModelAttribute("newUser") UserAccount user) {
         return "signupform";
     }
@@ -63,8 +63,9 @@ public class BuyerController {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         encodedPassword = "{bcrypt}" + encodedPassword;
         user.setPassword(encodedPassword);
+
         UserAccount savedUser = userAccountService.saveUserAccount(user);
-        model.addAttribute("savedUser");
+        model.addAttribute("savedUser", user);
 
         // rd.addFlashAttribute("savedUser",savedUser);
 
@@ -73,27 +74,27 @@ public class BuyerController {
     }
 
     @RequestMapping(value = "/customerForm", method = RequestMethod.GET)
-    public String customerRegisterForm(@ModelAttribute("newCustomer") Customer customer) {
-        System.out.println("rediect...recieved");
+    public String customerRegisterForm(@ModelAttribute("newCustomer") Customer customer, Model model) {
+
         return "buyer/customerFormView";
     }
 
     @PostMapping("/processCustomerForm")
-    public String processCustomerForm(@ModelAttribute("newCustomer") Customer customer, Model model, RedirectAttributes rd) {
+    public String processCustomerForm(Customer customer, Model model, RedirectAttributes rd) {
         UserAccount customerAccount = (UserAccount) model.asMap().get("savedUser");
         customer.setUserAccount(customerAccount);
         customer.setPersonId(customerAccount.getUserid());
         customer.setDateRegistered(new java.util.Date());
 
         Customer savedCustomer = buyerservice.saveCustomer(customer);
-        rd.addFlashAttribute("newCustomer", savedCustomer);
+        rd.addFlashAttribute("customer", savedCustomer);
         return "redirect:customerDetails";
     }
 
 
-
     @RequestMapping(value = "/customerDetails", method = RequestMethod.GET)
     public String customerDetails(Model model) {
+
         return "customerDetailsView";
     }
 

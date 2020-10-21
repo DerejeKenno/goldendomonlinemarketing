@@ -5,25 +5,17 @@ import miu.cs545.goldendomonlinemarketing.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
-    @Autowired
-    ProductService productService;
 
-    @RequestMapping("/home")
-    public String products(Model model) {
-        System.out.println("product listt..");
-        List<Product> productList = productService.getAllProducts();
-
-        for (Product p : productList) {
-            System.out.println(p);
-        }
-
-        model.addAttribute("productList", productList);
-        return "home.html";
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
     }
 }

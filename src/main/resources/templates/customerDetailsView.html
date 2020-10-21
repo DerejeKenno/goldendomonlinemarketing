@@ -8,15 +8,18 @@
 </head>
 
 <body>
-<span id="global" th:style="'width:500px'">
+<div id="global" th:style="'width:500px'">
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout"/>
     </form>
+<h1>Registered Successfully</h1>
+    <p>First Name:<span th:text="${customer.firstName}"></span></p>
+    <p>Last Name:<span th:text="${customer.lastName}"></span></p>
+    <p>Last Name:<span th:text="${customer.user_account_id}"></span></p>
+    <p>Reg Date: <span th:text="${customer.dateRegistered}"></span></p>
 
-    <p>First Name:</p>
-    <p>Last Name:</span></p>
-    <p>User Name: </span></p>
 
-</div>
+
+    </div>
 </body>
 </html>
