@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Product Details</h1>
+    </div>
+    <div class="container">
+        <br>
+        <a href="/home">Home</a>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+<div class="col-lg-6 col-sm-6 col-md-6">
+
+    <h4><span> Product Details</span></h4>
+    <p>
+        <span>Product Name:</span> <span th:text="${foundproduct.productName}"></span><br/>
+        <span>Product Description:</span> <span th:text="${foundproduct.description}"></span><br/>
+        <span>Product Category:</span> <span th:text="${foundproduct.category}"></span><br/>
+        <span>Unit Price:</span> <span th:text="${foundproduct.unitPrice}"></span><br/>
+    </p>
+    <p>
+        <select>
+            <option value="one" selected="selected">1</option>
+            <option value="two">2</option>
+            <option value="three">3</option>
+            <option value="four">4</option>
+            <option value="five">5</option>
+        </select>
+        <span>Select quantity</span>
+    </p>
+    <td><a th:href="@{/buyer/editproduct}" class="btn btn-primary"><i>
+        Add to Cart</i> </a></td>
+
+    <td><a th:href="@{/buyer/addOrder/{id} (id=${foundproduct.productId})}" class="btn btn-primary"><i
+    >Buy Now</i> </a></td>
+
+
+</div>
+
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+</body>
+</html>
