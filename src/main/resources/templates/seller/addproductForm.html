@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Add Product Form</h1>
+    </div>
+    <div class="container">
+        <br>
+        <a href="/home">Home</a>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <form action="#" th:action="@{/seller/addproduct}" th:object="${product}" method="post"
+    enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add New Product</legend>
+
+            <p>
+                <label for="productName">Product Name:</label>
+                <input class="form-control" id="productName" type="text" th:field="*{productName}"/>
+            </p>
+            <p>
+                <label for="description">Product Description:</label>
+                <input class="form-control" id="description" type="text" th:field="*{description}"/>
+            </p>
+            <p>
+                <label for="unitPrice">Unit Price:</label>
+                <textarea class="form-control" id="unitPrice" type="text" th:field="*{unitPrice}"></textarea>
+            </p>
+            <p>
+                <label for="category">Category:</label>
+                <input class="form-control" id="category" type="text" th:field="*{category}"/>
+            </p>
+
+            <p>
+                <label for="productImage">ProductImage:</label>
+                <input class="form-control" name="productImage" id="productImage" type="file" value="product Image"
+                       th:field="*{productImage}"/>
+            </p>
+            <p>
+                <image id="thumbnail" alt="Product image"/>
+            </p>
+
+            <p>
+                <input id="btnAdd" type="submit" class="btn btn-primary" value="Add"/>
+                <a href="/productlist" class="btn btn-primary"><span
+                        class="fas fa-user-plus ml-2"> Back</span></a>
+
+            </p>
+        </fieldset>
+    </form>
+
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+</body>
+</html>

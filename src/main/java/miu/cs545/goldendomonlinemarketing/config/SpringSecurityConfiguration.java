@@ -17,45 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-/*
-    @Autowired
-    DataSource dataSource;
-    
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-////                .dataSource(dataSource)
-////                .withDefaultSchema()
-////                .withUser(
-////                        Person.withUsername("user")
-////                        .password("user")
-////                        .roles("USER")
-////                )
-////                .withUser(
-////                        Person.withUsername("admin")
-////                        .password("admin")
-////                        .roles("ADMIN")
-////                );
-
-        *//**
-         * When the schema is the default, match Spring Security doc
-         *//*
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource);
-
-        *//**
-         * If your schema isn't default, override query
-         *//*
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled from users where username = ?")
-                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
-
-
-    }*/
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -82,14 +45,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ADMIN")
-                .antMatchers("/customer/*").hasRole("BUYER")
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/", "/h2-console/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/buyer/**").hasRole("BUYER")
+                .antMatchers("/seller/**").hasRole("SELLER")
+                .antMatchers("/","/home","/productlist" ,"/h2-console/**").permitAll()
                 .and()
                 .formLogin()
                     .loginPage("/login")

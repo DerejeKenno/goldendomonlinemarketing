@@ -11,8 +11,10 @@ public class Payment {
     private Date paymentDate;
     private double amount;
     @ManyToOne
+    @JoinColumn(name = "billing_address_id")
     private BillingAddress billingAddress;
     @OneToOne
+    @JoinColumn(name = "order_id")
     private Orders order;
 
     public Payment() {

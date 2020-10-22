@@ -19,11 +19,6 @@ public class Person {
     @JoinColumn(name = "user_account_id")
     UserAccount userAccount;
 
-    /*private String username;
-    private String password;
-    private String role;
-    private boolean enabled;*/
-
 
     public Person() {
     }

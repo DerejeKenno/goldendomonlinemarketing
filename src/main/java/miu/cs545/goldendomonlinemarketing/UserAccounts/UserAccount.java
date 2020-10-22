@@ -10,7 +10,7 @@ public class UserAccount {
     private int userid;
     private String username;
     private String password;
-    //public String role;
+
     @ManyToOne
     @JoinColumn(name = "role")
     private Role userRole;

@@ -5,13 +5,14 @@ import miu.cs545.goldendomonlinemarketing.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
 @Controller
-//@RequestMapping("/home")
+
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -26,7 +27,6 @@ public class ProductController {
         }
 
         model.addAttribute("productList", productList);
-        return "productlist.html";
+        return "productlist";
     }
 }
-//AllProductsView

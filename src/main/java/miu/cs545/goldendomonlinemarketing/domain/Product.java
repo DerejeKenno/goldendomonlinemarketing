@@ -1,5 +1,9 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,8 @@ public class Product {
     private String description;
     private double unitPrice;
     private String category;
-
+    @JsonIgnore
+   private CommonsMultipartFile productImage;
     @ManyToMany(mappedBy = "productReviews")
     private List<Customer> reviewers=new ArrayList<>();
 
@@ -21,11 +26,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, String description, double unitPrice, String category, List<Customer> reviewers) {
+    public Product(String productName, String description, double unitPrice, String category, CommonsMultipartFile productImage, List<Customer> reviewers) {
         this.productName = productName;
         this.description = description;
         this.unitPrice = unitPrice;
         this.category = category;
+        this.productImage = productImage;
         this.reviewers = reviewers;
     }
 
@@ -69,6 +75,14 @@ public class Product {
         this.category = category;
     }
 
+    public CommonsMultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(CommonsMultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
     public List<Customer> getReviewers() {
         return reviewers;
     }
@@ -85,6 +99,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", category='" + category + '\'' +
+                ", productImage='" + productImage + '\'' +
                 ", reviewers=" + reviewers +
                 '}';
     }

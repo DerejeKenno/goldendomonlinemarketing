@@ -1,6 +1,9 @@
 package miu.cs545.goldendomonlinemarketing.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -8,26 +11,31 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
-    private Date orderDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate orderDate;
     private int quantity;
     private String orderStatus;
     @ManyToOne
+    @JoinColumn(name = "buyer_id")
     private Customer buyer;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
     @OneToOne
+    @JoinColumn(name = "shipping_id")
     private ShippingInfo shippingInfo;
 
     public Orders() {
     }
 
-    public Orders(Date orderDate, int quantity, String orderStatus, Customer buyer, Product product, ShippingInfo shippingInfo) {
+    public Orders(LocalDate orderDate, int quantity, String orderStatus, Product product) {
         this.orderDate = orderDate;
         this.quantity = quantity;
         this.orderStatus = orderStatus;
-        this.buyer = buyer;
+      //  this.buyer = buyer;
         this.product = product;
-        this.shippingInfo = shippingInfo;
+      //  this.shippingInfo = shippingInfo;
     }
 
     public int getOrderId() {
@@ -38,11 +46,11 @@ public class Orders {
         this.orderId = orderId;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 

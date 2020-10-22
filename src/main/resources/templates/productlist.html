@@ -17,16 +17,16 @@
     </div>
     <div class="container">
         <br>
-        <a href="/admin/home">Home</a>
+        <a href="/home">Home</a>
     </div>
 </div>
 <div class="col-lg-3 col-sm-3 col-md-3">
 
 </div>
 <div class="col-lg-6 col-sm-6 col-md-6">
-    <form method="get" action="/admin/entry">
+    <form method="get" th:action="@{seller/addproductForm}">
         <button class="btn btn-primary fas fa-userAccount-plus ml-2" type="submit">Add Another Product</button>
-        <a href="/admin/home" class="btn btn-primary"><span
+        <a href="/home" class="btn btn-primary"><span
                 class="fas fa-userAccount-plus ml-2"> Home</span></a>
     </form>
     <table class="table table-hover table-bordered">
@@ -37,20 +37,23 @@
             <th scope="col">Description</th>
             <th scope="col">Unit price</th>
             <th scope="col">Category</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product:${productList}">
-            <th scope="row"><span th:text="${product.productId}"></span></th>
-            <td><span th:text="${product.getProductName()}"></span></td>
-            <td><span th:text="${product.getDescription()}"></span></td>
-            <td><span th:text="${product.getUnitPrice()}"></span></td>
-            <td><span th:text="${product.getCategory()}"></span></td>
+        <tr th:each="p:${productList}">
+            <th scope="row"><span th:text="${p.productId}"></span></th>
+            <td><span th:text="${p.productName}"></span></td>
+            <td><span th:text="${p.description}"></span></td>
+            <td><span th:text="${p.unitPrice}"></span></td>
+            <td><span th:text="${p.category}"></span></td>
 
-            <td><a th:href="@{/admin/editproduct/{id} (id=${product.getProductId()})}" class="btn btn-primary"><i
-                    class="fas fa-userAccount-edit ml-2"></i> </a></td>
-            <td><a th:href="@{/admin/deleteproduct/{id} (id=${product.getProductId()})}" class="btn btn-primary"><i
-                    class="fas fa-userAccount-times ml-2"></i> </a></td>
+            <td><a th:href="@{/seller/editproduct/{prod} (prod=${p})}" class="btn btn-primary"><i
+                   >Edit</i> </a></td>
+
+            <td><a th:href="@{/seller/deleteproduct/{id} (id=${p.productId})}" class="btn btn-primary"><i
+                    >Delete</i> </a></td>
 
         </tr>
         </tbody>

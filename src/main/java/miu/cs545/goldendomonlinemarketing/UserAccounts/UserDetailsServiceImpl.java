@@ -17,8 +17,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new MyUserDetails(userAccount);
            }
 
-   /* public UserAccount saveUserAccount(UserAccount user){
-        return  userRepository.save(user);
-    }*/
+
 
 }

@@ -11,8 +11,10 @@ public class ShoppingCart {
     private Date addedDate;
     private int itemQuality;
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public ShoppingCart() {

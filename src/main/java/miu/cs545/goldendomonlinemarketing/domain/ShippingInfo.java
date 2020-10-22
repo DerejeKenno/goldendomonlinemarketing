@@ -9,6 +9,7 @@ public class ShippingInfo {
     private int id;
     private Date shipDate;
     @ManyToOne
+    @JoinColumn(name = "shipping_address_id")
     private Address shippingAddress;
 
     public ShippingInfo() {
