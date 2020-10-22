@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register as Buyer</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h3 > </h3>
+    </div>
+    <div class="container">
+        <br>
+        <a href="/home">Home</a>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <div id="global">
+        <form action="#" th:action="@{/processSellerForm}" th:object="${newSeller}" method="post">
+            <fieldset>
+                <legend>Please Compelete The Registration Process</legend>
+                <p>
+                    <label for="firstName">First Name:</label><input class="form-control" id="firstName" type="text"
+                                                                     th:field="*{firstName}"/>
+                </p>
+                <p>
+                    <label for="lastName">Last Name:</label> <input class="form-control" id="lastName" type="text"
+                                                                    th:field="*{lastName}"/>
+                </p>
+                <p>
+                    <label for="hireDate">Hire Date:</label> <input class="form-control" id="hireDate" type="text"
+                                                                    th:field="*{hireDate}"/>
+                </p>
+                <p>
+                    <input id="btnAdd2" type="submit" class="btn btn-primary" value="Add"/>
+                    <a href="/seller/register" class="btn btn-primary"><span
+                            class="fas fa-userAccount-plus ml-2"> Back</span></a>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+</body>
+</html>

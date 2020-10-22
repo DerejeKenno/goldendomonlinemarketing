@@ -11,8 +11,8 @@
 <body>
 <div class="jumbotron">
     <div class="container">
-<h1 th:text="'Well Come:'+${savedUser.username}+' Now Use Your Account to Complete the '"> Well Come</h1>
-       <span> <h2>Customer Registration Form</h2></span>
+<h3 > Well Come! Now Use Your Account to Complete the Customer Registration Form</h3>
+
     </div>
     <div class="container">
         <br>
@@ -24,7 +24,7 @@
 </div>
 <div class="col-lg-6 col-md-6 col-sm-6">
     <div id="global" >
-        <form action="#" th:action="@{/buyer/processCustomerForm}" th:object="${newCustomer}" method="post">
+        <form action="#" th:action="@{/processCustomerForm}" th:object="${newCustomer}" method="post">
             <fieldset>
                 <legend>Please Compelete The Registration Process</legend>
                 <p>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Successfully </title>
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css"/>
+</head>
+
+<body>
+<div id="global" th:style="'width:500px'">
+
+<h1>Registered Successfully</h1>
+    <p>First Name:<span th:text="${newSeller.firstName}"></span></p>
+    <p>Last Name:<span th:text="${newSeller.lastName}"></span></p>
+    <p>Reg Date: <span th:text="${newSeller.hireDate}"></span></p>
+
+    <p>Nex Time, Use Your User Account To Login.</p>
+    <p><a th:href="@{/home}"> Back To Home</a></p>
+
+    </div>
+</body>
+</html>

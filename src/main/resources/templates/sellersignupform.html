@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Sign Up Form</h1>
+    </div>
+    <div class="container">
+        <br>
+        <a href="/home">Home</a>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <div id="global" >
+        <form action="#" th:action="@{/saveSeller}" th:object="${newUser}" method="post">
+            <fieldset>
+                <legend>Create  User Account</legend>
+                <p>
+                    <label for="username">user Name:</label><input class="form-control" id="username" type="text" th:field="*{username}"/>
+                </p>
+                <p>
+                    <label for="password">Password:</label> <input class="form-control" id="password" type="text" th:field="*{password}"/>
+                </p>
+
+                <p>
+                    <input id="btnAdd2" type="submit" class="btn btn-primary" value = "create account"/>
+                    <a href="/home" class="btn btn-primary"><span
+                            class="fas fa-userAccount-plus ml-2"> Back</span></a>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3">
+
+</div>
+</body>
+</html>
